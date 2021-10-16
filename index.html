@@ -10,9 +10,10 @@
 </head>
 <body>
     <div class="container">
+      <div class="alert">Your message has been sent</div>
         <h2 class="text-center mt-2">STUDENTS REGISTRATION FORM</h2>
-        <form class="dataForm mt-4" action="#" method="post">
-            <div class="form-row">
+        <form id="dataForm">
+            <div class="form-row mt-4">
               <div class="col-md-6">
                 <input type="text" class="form-control" placeholder="Your name" id="name">
               </div>
@@ -61,8 +62,7 @@
           </form>
     </div>
 
-    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js"></script>
-    <!-- <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script> -->
-   <script src="app.js"></script> 
+  <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
+  <script src="app.js"></script> 
 </body>
 </html>

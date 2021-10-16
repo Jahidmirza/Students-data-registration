@@ -1,38 +1,76 @@
-const config = {
-    apiKey: "AIzaSyCEsIqdOo7-BdvufQkb6OZj3XlRW7d6hFk",
-    authDomain: "students-data-e7bd0.firebaseapp.com",
-    projectId: "students-data-e7bd0",
-    storageBucket: "students-data-e7bd0.appspot.com",
-    messagingSenderId: "921524719350",
-    appId: "1:921524719350:web:dac5e15174976b7fb326d7"
-  };
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+    apiKey: "AIzaSyCa-fojSKoZ4Nds82xcYNXWYdpGRBSomgM",
+    authDomain: "daring-solstice-315504.firebaseapp.com",
+    projectId: "daring-solstice-315504",
+    storageBucket: "daring-solstice-315504.appspot.com",
+    messagingSenderId: "347063456351",
+    appId: "1:347063456351:web:c80844eab3d602e84d41ea"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
 
-  // Initialize Firebase
-  firebase.initializeApp(config);
+    // Reference messages collection
+    var messagesRef = firebase.database().ref('messages');
 
-  const messagesRef = firebase.database().ref('messages');
+    // Listen for form submit
+    document.getElementById('dataForm').addEventListener('submit', submitForm);
 
-
-document.querySelector('.dataForm').addEventListener('submit', submitForm);
-
-function submitForm(e){
+    // Submit form
+    function submitForm(e){
     e.preventDefault();
-    
-const name = getInputVal('name');
-const email = getInputVal('email');
-const roll = getInputVal('roll');
-const section = getInputVal('section');
-const dateBrt = getInputVal('dateBrt');
-const mobile = getInputVal('mobile');
-const address = getInputVal('address');
-const city = getInputVal('city');
-const male = getInputVal('male');
-const female = getInputVal('female');
+  
+    // Get values
+    var name = getInputVal('name');
+    var email = getInputVal('email');
+    var roll = getInputVal('roll');
+    var section = getInputVal('section');
+    var dateBrt = getInputVal('dateBrt');
+    var mobile = getInputVal('mobile');
+    var address = getInputVal('address');
+    var city = getInputVal('city');
+    var male = getInputVal('male');
+    var female = getInputVal('female');
+  
+    // Save message
+    saveMessage(name, email, roll, section, dateBrt, mobile, address, city, male, female);
+  
+    // Show alert
+    document.querySelector('.alert').style.display = 'block';
+  
+    // Hide alert after 3 seconds
+    setTimeout(function(){
+      document.querySelector('.alert').style.display = 'none';
+    },3000);
+  
+    // Clear form
+    document.getElementById('contactForm').reset();
 
+    }
+  
 
-    console.log(name);
-}
-
-function getInputVal(id) {
+  // Function to get get form values
+    function getInputVal(id){
     return document.getElementById(id).value;
-}
+    }
+  
+  // Save message to firebase
+  function saveMessage(name, email, roll, section, dateBrt, mobile, address, city, male, female){
+
+    var newMessageRef = messagesRef.push();
+
+    newMessageRef.set({
+        name: name,
+        email: email,
+        roll: roll,
+        section: section,
+        dateBrt: dateBrt,
+        mobile: mobile,
+        address: address,
+        city: city,
+        male: male,
+        female: female
+
+    });
+  }
